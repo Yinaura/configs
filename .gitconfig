@@ -1,0 +1,66 @@
+[alias]
+  branch-root = merge-base master HEAD
+
+  ck = checkout
+  st = status -s
+
+  back = reset HEAD^
+
+  cm = commit
+  cma = commit --amend
+  amend = commit --amend
+
+  create = !git add . && git commit
+  cr = !git create
+
+  final = !git add . && git commit --amend
+  fn = !git final
+  forget = !git final
+  fg = !git final
+  cmaf = !git final
+
+  l  = !git log --oneline --date=short --format=\"%C(yellow)%h%C(reset) %C(magenta)[%ad]%C(reset) %s %C(cyan)@%an%C(reset)\" $(git branch-root)..HEAD
+  ll = log --oneline --name-status master..
+
+  br = branch
+
+  df = diff
+  ds = diff --staged
+
+  remember = !git diff $(git branch-root)
+  rr = !git remember
+
+  names = diff --name-only HEAD^
+  history = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+
+  rb = rebase
+  rba = rebase --abort
+
+  rbc = rebase --continue
+  change-the-world = !git add . && git commit --amend && git rebase --continue
+  ctw = !git change-the-world
+  in-about-thirty-years = !git change-the-world
+
+  back-to-the-future = !git rebase -i $(git merge-base master HEAD)
+  bf = !git back-to-the-future
+  rbi = !git back-to-the-future
+
+  rebase-to = rebase
+
+  one = log --oneline
+
+  refresh = !git checkout master && git pull origin master && git checkout - && git rebase master
+  new-world = !git refresh
+  nw = !git refresh
+
+  erase = clean -fd
+  er = clean -fd
+  vanish = !git reset . && git checkout . && git clean -fd  
+
+  stash = stash -u -k
+
+  strike = push -f
+
+  happy = blame
+
+  wip = commit --allow-empty
